@@ -10,9 +10,8 @@ Ce document contient tous les scénarios de tests unitaires et le plan de test c
 2. [Tests Unitaires - Services](#tests-unitaires---services)
 3. [Tests Unitaires - Sécurité](#tests-unitaires---sécurité)
 4. [Tests Unitaires - Contrôleurs](#tests-unitaires---contrôleurs)
-5. [Tests d'Intégration End-to-End](#tests-dintégration-end-to-end)
-6. [Matrice de Couverture](#matrice-de-couverture)
-7. [Exécution des Tests](#exécution-des-tests)
+5. [Matrice de Couverture](#matrice-de-couverture)
+6. [Exécution des Tests](#exécution-des-tests)
 
 ---
 
@@ -21,7 +20,6 @@ Ce document contient tous les scénarios de tests unitaires et le plan de test c
 ### Types de Tests
 
 - **Tests Unitaires** : Tests isolés des services, contrôleurs et composants de sécurité
-- **Tests d'Intégration** : Tests end-to-end couvrant les flux complets
 - **Tests de Contrôleurs** : Tests des endpoints REST avec MockMvc
 
 ### Outils Utilisés
@@ -289,85 +287,17 @@ Ce document contient tous les scénarios de tests unitaires et le plan de test c
 
 ---
 
-## Tests d'Intégration End-to-End
-
-### 1. CategoryIntegrationTest
-
-**Fichier** : `CategoryIntegrationTest.java`
-
-#### Scénarios de Test
-
-| Test | Description | Résultat Attendu |
-|------|-------------|------------------|
-| `testCreateAndGetCategory_EndToEnd` | Créer puis récupérer une catégorie | Catégorie créée et récupérée avec succès |
-| `testCreateUpdateDeleteCategory_EndToEnd` | Cycle complet CRUD | Création, mise à jour et suppression réussies |
-
-**Couverture** : Flux complet de gestion des catégories
-
----
-
-### 2. UserIntegrationTest
-
-**Fichier** : `UserIntegrationTest.java`
-
-#### Scénarios de Test
-
-| Test | Description | Résultat Attendu |
-|------|-------------|------------------|
-| `testRegisterAndLogin_EndToEnd` | Enregistrer puis connecter un utilisateur | Utilisateur enregistré, token obtenu |
-| `testRegisterGetAllUsers_EndToEnd` | Enregistrer puis récupérer tous les utilisateurs | Liste contient l'utilisateur créé |
-| `testRegisterGetCurrentUser_EndToEnd` | Enregistrer puis récupérer l'utilisateur connecté | Utilisateur connecté récupéré |
-| `testRegisterUpdateDeleteUser_EndToEnd` | Cycle complet CRUD utilisateur | Création, mise à jour et suppression réussies |
-
-**Couverture** : Flux complet d'authentification et gestion utilisateur
-
----
-
-### 3. ProductCategoryIntegrationTest
-
-**Fichier** : `ProductCategoryIntegrationTest.java`
-
-#### Scénarios de Test
-
-| Test | Description | Résultat Attendu |
-|------|-------------|------------------|
-| `testCreateProductWithCategory_EndToEnd` | Créer un produit avec catégorie | Produit créé avec catégorie associée |
-| `testCreateProductSearchProduct_EndToEnd` | Créer puis rechercher un produit | Produit trouvé par recherche |
-| `testCreateUpdateDeleteProduct_EndToEnd` | Cycle complet CRUD produit | Création, mise à jour et suppression réussies |
-
-**Couverture** : Flux complet de gestion des produits avec catégories
-
----
-
-### 4. TransactionIntegrationTest
-
-**Fichier** : `TransactionIntegrationTest.java`
-
-#### Scénarios de Test
-
-| Test | Description | Résultat Attendu |
-|------|-------------|------------------|
-| `testPurchaseTransaction_EndToEnd` | Effectuer un achat complet | Stock augmenté, transaction créée |
-| `testSellTransaction_EndToEnd` | Effectuer une vente complète | Stock diminué, transaction créée |
-| `testReturnToSupplier_EndToEnd` | Retourner un produit au fournisseur | Stock diminué, transaction créée |
-| `testGetAllTransactions_EndToEnd` | Récupérer toutes les transactions | Liste de transactions retournée |
-| `testUpdateTransactionStatus_EndToEnd` | Mettre à jour le statut d'une transaction | Statut mis à jour avec succès |
-
-**Couverture** : Flux complet de gestion des transactions
-
----
-
 ## Matrice de Couverture
 
 ### Services
 
-| Service | Tests Unitaires | Tests d'Intégration | Couverture |
-|---------|----------------|---------------------|------------|
-| CategoryService | 8 tests | 2 tests | 100% |
-| ProductService | 12 tests | 3 tests | 100% |
-| SupplierService | 8 tests | - | 100% |
-| TransactionService | 12 tests | 5 tests | 100% |
-| UserService | 15 tests | 4 tests | 100% |
+| Service | Tests Unitaires | Couverture |
+|---------|----------------|------------|
+| CategoryService | 8 tests | 100% |
+| ProductService | 12 tests | 100% |
+| SupplierService | 8 tests | 100% |
+| TransactionService | 12 tests | 100% |
+| UserService | 15 tests | 100% |
 
 ### Sécurité
 
@@ -392,8 +322,7 @@ Ce document contient tous les scénarios de tests unitaires et le plan de test c
 - **Tests Unitaires Services** : 55 tests
 - **Tests Unitaires Sécurité** : 7 tests
 - **Tests Unitaires Contrôleurs** : 31 tests
-- **Tests d'Intégration** : 14 tests
-- **TOTAL** : **107 tests**
+- **TOTAL** : **93 tests**
 
 ---
 
@@ -404,18 +333,6 @@ Ce document contient tous les scénarios de tests unitaires et le plan de test c
 ```bash
 cd backend
 mvn test
-```
-
-### Exécuter les Tests Unitaires Seulement
-
-```bash
-mvn test -Dtest=*Test
-```
-
-### Exécuter les Tests d'Intégration Seulement
-
-```bash
-mvn test -Dtest=*IntegrationTest
 ```
 
 ### Exécuter un Test Spécifique
@@ -438,48 +355,48 @@ Le rapport sera généré dans : `target/site/jacoco/index.html`
 
 ### Scénario 1 : Gestion Complète d'une Catégorie
 
-1. ✅ Créer une catégorie
-2. ✅ Récupérer toutes les catégories
-3. ✅ Récupérer la catégorie par ID
-4. ✅ Mettre à jour la catégorie
-5. ✅ Supprimer la catégorie
-6. ✅ Vérifier que la catégorie n'existe plus
+1. Créer une catégorie
+2. Récupérer toutes les catégories
+3. Récupérer la catégorie par ID
+4. Mettre à jour la catégorie
+5. Supprimer la catégorie
+6. Vérifier que la catégorie n'existe plus
 
 ### Scénario 2 : Gestion Complète d'un Produit
 
-1. ✅ Créer une catégorie
-2. ✅ Créer un produit avec catégorie
-3. ✅ Récupérer tous les produits
-4. ✅ Rechercher un produit
-5. ✅ Mettre à jour le produit
-6. ✅ Supprimer le produit
+1. Créer une catégorie
+2. Créer un produit avec catégorie
+3. Récupérer tous les produits
+4. Rechercher un produit
+5. Mettre à jour le produit
+6. Supprimer le produit
 
 ### Scénario 3 : Cycle de Transaction Complet
 
-1. ✅ Créer une catégorie
-2. ✅ Créer un fournisseur
-3. ✅ Créer un produit
-4. ✅ Effectuer un achat (stock augmente)
-5. ✅ Effectuer une vente (stock diminue)
-6. ✅ Retourner un produit au fournisseur
-7. ✅ Récupérer toutes les transactions
-8. ✅ Mettre à jour le statut d'une transaction
+1. Créer une catégorie
+2. Créer un fournisseur
+3. Créer un produit
+4. Effectuer un achat (stock augmente)
+5. Effectuer une vente (stock diminue)
+6. Retourner un produit au fournisseur
+7. Récupérer toutes les transactions
+8. Mettre à jour le statut d'une transaction
 
 ### Scénario 4 : Authentification et Gestion Utilisateur
 
-1. ✅ Enregistrer un utilisateur
-2. ✅ Se connecter (obtenir token)
-3. ✅ Récupérer l'utilisateur connecté
-4. ✅ Mettre à jour l'utilisateur
-5. ✅ Récupérer tous les utilisateurs (ADMIN)
-6. ✅ Supprimer l'utilisateur
+1. Enregistrer un utilisateur
+2. Se connecter (obtenir token)
+3. Récupérer l'utilisateur connecté
+4. Mettre à jour l'utilisateur
+5. Récupérer tous les utilisateurs (ADMIN)
+6. Supprimer l'utilisateur
 
 ### Scénario 5 : Gestion des Erreurs
 
-1. ✅ Tester NotFoundException pour toutes les entités
-2. ✅ Tester InvalidCredentialsException pour login
-3. ✅ Tester NameValueRequiredException pour transactions
-4. ✅ Tester les validations de champs requis
+1. Tester NotFoundException pour toutes les entités
+2. Tester InvalidCredentialsException pour login
+3. Tester NameValueRequiredException pour transactions
+4. Tester les validations de champs requis
 
 ---
 
@@ -487,25 +404,18 @@ Le rapport sera généré dans : `target/site/jacoco/index.html`
 
 ### Tests Unitaires
 
-- ✅ Tous les services ont des tests unitaires complets
-- ✅ Tous les cas de succès sont testés
-- ✅ Tous les cas d'erreur sont testés
-- ✅ Utilisation de mocks pour isoler les dépendances
-- ✅ Couverture de code > 90%
-
-### Tests d'Intégration
-
-- ✅ Tous les flux end-to-end sont testés
-- ✅ Base de données H2 utilisée pour l'isolation
-- ✅ Transactions rollback pour éviter les effets de bord
-- ✅ Tests indépendants les uns des autres
+- Tous les services ont des tests unitaires complets
+- Tous les cas de succès sont testés
+- Tous les cas d'erreur sont testés
+- Utilisation de mocks pour isoler les dépendances
+- Couverture de code > 90%
 
 ### Tests de Contrôleurs
 
-- ✅ Tous les endpoints sont testés
-- ✅ Tests avec MockMvc
-- ✅ Vérification des codes de statut HTTP
-- ✅ Vérification des réponses JSON
+- Tous les endpoints sont testés
+- Tests avec MockMvc
+- Vérification des codes de statut HTTP
+- Vérification des réponses JSON
 
 ---
 
@@ -525,20 +435,19 @@ Lors de l'ajout d'une nouvelle fonctionnalité :
 
 1. Créer les tests unitaires pour le service
 2. Créer les tests pour le contrôleur
-3. Créer les tests d'intégration si nécessaire
-4. Vérifier que tous les tests passent
-5. Mettre à jour ce document
+3. Vérifier que tous les tests passent
+4. Mettre à jour ce document
 
 ---
 
 ## Conclusion
 
 Le plan de test couvre :
-- ✅ **107 tests** au total
-- ✅ **100% de couverture** des services
-- ✅ **Tous les scénarios** de succès et d'erreur
-- ✅ **Tests end-to-end** pour les flux complets
-- ✅ **Tests de sécurité** pour l'authentification
+- **93 tests unitaires** au total
+- **100% de couverture** des services
+- **Tous les scénarios** de succès et d'erreur
+- **Tests de sécurité** pour l'authentification
+- **Tests de contrôleurs** pour tous les endpoints REST
 
 Tous les tests sont automatisés et peuvent être exécutés avec une simple commande Maven.
 
